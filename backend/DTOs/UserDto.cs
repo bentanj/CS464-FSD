@@ -10,6 +10,8 @@ public class UserDto
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     
+    // Household memberships
+    public List<HouseholdMemberDto>? Households { get; set; }
 }
 
 /// <summary>
@@ -21,6 +23,10 @@ public class CreateUserRequest
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
+    
+    // Optional: Household name during first registration
+    public string? HouseholdName { get; set; }
+
 }
 
 /// <summary>

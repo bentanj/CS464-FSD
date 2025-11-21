@@ -38,6 +38,20 @@ else
                        ?? throw new InvalidOperationException("Database connection string not configured. Please set DB_HOST and DB_PASSWORD in .env file.");
 }
 
+using var testConn = new Npgsql.NpgsqlConnection(connectionString);
+try
+{
+    testConn.Open();
+    Console.WriteLine("✅ Database connection successful!");
+    testConn.Close();
+}
+catch (Exception ex)
+{
+    Console.WriteLine("❌ Database connection failed:");
+    Console.WriteLine(ex.Message);
+    throw; // Stops the app if connection fails
+}
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(
         connectionString,
